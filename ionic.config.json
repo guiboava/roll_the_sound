@@ -1,0 +1,7 @@
+{
+  "name": "roll_the_sound",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
