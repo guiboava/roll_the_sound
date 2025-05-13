@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><strong>Na Nota</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Na Nota</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+  <ion-card-header>
+    <!-- Cadastro de banda  -->
+    <ion-card-title color="primary">Tom Petty And The Heartbreakers</ion-card-title>
+    <!-- Cadastro do instrumento demonstrado  -->
+    <ion-card-subtitle>Instrumento: Gaita C(DÓ)</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <!-- Cadastro de video que usa a musica  -->
+  <iframe 
+    width="560" 
+    height="315"   
+    src="https://www.youtube.com/embed/aowSGxim_O8" 
+    title="YouTube video player" 
+    style="border: 2px solid #b00020; border-radius: 10px;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+  <!-- Cadastro da tablatura  -->
+  <ion-title >Tablatura:</ion-title>
+  <ion-item >
+    <ion-text>
+          -4 -4 -5 -5 5 -4<br> 
+          -4 -4 -5 -5 5 -4 <br>
+          -4 -4 -5 -5 5 -4 <br>
+    </ion-text>
+  </ion-item>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>
+

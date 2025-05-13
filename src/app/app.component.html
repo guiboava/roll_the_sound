@@ -1,21 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
   <ion-menu contentId="main-content" color="primary">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Menu</ion-title>
+        <ion-title><ion-icon style="align-items: midle;vertical-align: bottom; font-size: 30px;" name="dice-sharp"></ion-icon> <strong>Roll The Sound</strong></ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item routerLink="/home">Home</ion-item>
-        <ion-item routerLink="/products">Produtos</ion-item>
-        <ion-item routerLink="/order">Pedido</ion-item>
-        <ion-item routerLink="/artists">Artistas</ion-item>
-        <ion-item routerLink="/opinion">Opinião</ion-item>
+    <ion-content >
+      <ion-list id="inbox-list">
+
+        @for (p of appPages; track p; let i = $index) {
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+            routerLinkActive="selected">
+            <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            <ion-title>{{ p.title }}</ion-title>
+          </ion-item>
+        </ion-menu-toggle>
+        }
       </ion-list>
     </ion-content>
   </ion-menu>
-  
-  <ion-router-outlet id="main-content"></ion-router-outlet>
-</ion-app>
+    <ion-router-outlet id="main-content"></ion-router-outlet>

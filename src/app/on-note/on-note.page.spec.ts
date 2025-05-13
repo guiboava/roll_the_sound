@@ -1,14 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { OnNotePage } from './on-note.page';
 
-import { HomePage } from './home.page';
-
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('OnNotePage', () => {
+  let component: OnNotePage;
+  let fixture: ComponentFixture<OnNotePage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(OnNotePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

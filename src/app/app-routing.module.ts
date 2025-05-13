@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
+    {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'products',
@@ -27,11 +27,15 @@ const routes: Routes = [
     path: 'opinion',
     loadChildren: () => import('./opinion/opinion.module').then( m => m.OpinionPageModule)
   },
+  {
+    path: 'on-note',
+    loadChildren: () => import('./on-note/on-note.module').then( m => m.OnNotePageModule)
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
