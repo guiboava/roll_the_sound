@@ -6,23 +6,32 @@
     <ion-title><strong>Produtos</strong></ion-title>
   </ion-toolbar>
 </ion-header>
+  <ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Produtos</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-item >
-    <ion-text>
-          1. Produtos /products<br>
-              Nome (ion-input)<br>
-              Preço (ion-input, type="number")<br>
-              Categoria (ion-select)<br>
-              Data de lançamento (ion-datetime)<br>
-              Em estoque? (ion-toggle)<br>
-    </ion-text>
-  </ion-item>
-
-</ion-content>
+  <ion-grid >
+    <ion-row >
+      @for(product of productList; track product.name) {
+        <ion-col size="6" size-md="3" >
+          <ion-card class=".card-produto" >
+            <img class="img-produto" [src]="product.image" />
+            <ion-text >
+              <h2 style="color: #b00020;"><strong>{{ product.name }}</strong></h2>
+              <h3><strong>Fabricante: </strong> {{ product.manufacturer }} </h3>
+              <h4><strong>Preço: </strong> {{product.price | currency: 'BRL' }}</h4>
+              <h4><strong>Disponivel:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>
+            </ion-text>
+          </ion-card>
+        </ion-col>
+      }
+      @empty {
+      <ion-item>Lista de produtos vazia, cadastre um novo produto!</ion-item>
+      }
+    </ion-row>
+  </ion-grid>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button [routerLink]="['new']">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>

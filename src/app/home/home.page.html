@@ -18,13 +18,64 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
+    
+  <ion-card>
 
 
-    <div class="welcome-section">
-      <h2 class="headline">Sua loja online de instrumentos musicais</h2>
-      <p>Explore uma variedade de guitarras, teclados, baterias, sopros e acessórios. Ofertas especiais, lançamentos e tudo o que você precisa para fazer música com qualidade.</p>
-  
+      <img class="img-banner" src="assets\images\home\store-banner.png" />
 
-    </div>
+
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="4">
+        <ion-card class=".card-produto">
+          <img class="img-produto"  src="assets\images\products\Ibanez-GRG131DX.jpg" />
+            <ion-button expand="block" color="primary" routerLink="/products">
+              Produtos
+            </ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" size-md="4">
+        <ion-card class=".card-produto">
+          <img class="img-produto" src="assets\images\home\order.png" />
+            <ion-button expand="block" color="primary" routerLink="/order">
+              Pedidos
+            </ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" size-md="4">
+        <ion-card class=".card-produto">
+          <img class="img-produto" src="assets\images\home\zakk.png" />
+            <ion-button expand="block" color="primary" routerLink="/artists">
+              Artistas
+            </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+        <ion-row>
+      <ion-col size="6" size-md="4">
+        <ion-card class=".card-produto">
+          <img class="img-produto" src="assets\images\home\on-note.jpg" />
+            <ion-button expand="block" color="primary" routerLink="/on-note">
+              Na nota
+            </ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" size-md="4">
+        <ion-card class=".card-produto">
+          <img class="img-produto" src="assets\images\home\opinion.jpg" />
+            <ion-button expand="block" color="primary" routerLink="/opinion">
+              Opinião
+            </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center">© 2025 Roll the Sound</ion-title>
+  </ion-toolbar>
+</ion-content>
   </ion-content>
 
