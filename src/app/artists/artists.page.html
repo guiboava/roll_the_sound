@@ -7,23 +7,62 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Artistas</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-item >
-    <ion-text>
-      2. Artistas /artists<br>
-      Nome artístico (ion-input)<br>
-      Estilo musical (ion-select)<br>
-      País de origem (ion-input)<br>
-      Ativo desde (ion-datetime)<br>
-      Tem banda fixa? (ion-radio-group)<br>
-    </ion-text>
-  </ion-item>
+  <ion-list>
+    <ion-list-header lines="full">
+      <ion-label color="primary"><strong>Lista de Artistas</strong></ion-label>
+    </ion-list-header>
+
+    @for (artist of artistsList; track artist.name) {
+
+    <ion-card class="artist-card">
+
+<ion-item>
+      <ion-card-header>
+        <ion-card-title>{{ artist.name }}</ion-card-title>
+        <ion-card-subtitle>Banda: {{ artist.band }}</ion-card-subtitle>
+      </ion-card-header>
+</ion-item>
+      <ion-card-content>
+        <ion-item>
+          <ion-thumbnail style="width:50rem; height:50rem;" slot="start">
+            <ion-img class="artist-img" [src]="artist.image" alt="Foto do artista"></ion-img>
+          </ion-thumbnail>
+          <div class="video-container">
+            <iframe [src]="artist.srcClip" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+
+        </ion-item>
+                  <h1><strong>Sobre:</strong>
+            <p> {{ artist.about }}</p>
+          </h1>
+      </ion-card-content>
+
+    </ion-card>
+    }
+
+    @empty {
+    <ion-item>
+      <ion-label color="danger">Lista de artistas vazia. Cadastre um novo artista!</ion-label>
+    </ion-item>
+    }
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['new']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
-
