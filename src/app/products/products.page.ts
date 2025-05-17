@@ -23,6 +23,9 @@ export class ProductsPage implements OnInit {
       stock: true,
       image: "https://acdn-us.mitiendanube.com/stores/283/003/products/free-blues-1-nv1-024ec3140c64efb6d616672368061234-1024-1024.jpg",
     },
+   
+    
+    
   ]
   constructor() { }
 

@@ -9,4 +9,37 @@
 
 <ion-content>
 
+
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" label="Nome: " type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input labelPlacement="floating" label="Preço" type="text" [maskito]="priceMask"
+          [maskitoElement]="maskitoElement" />
+      </ion-item>
+
+      <ion-item>
+        <ion-input labelPlacement="floating" label="Fabricante:" type="text" />
+      </ion-item>
+
+      <ion-item>
+        <ion-input labelPlacement="floating" label="Logo (URL)" type="url"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select labelPlacement="Estoque" interface="popover" placeholder="Estoque">
+          <ion-select-option value="false">Não</ion-select-option>
+          <ion-select-option value="true">Sim</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </ion-content>
 </ion-content>

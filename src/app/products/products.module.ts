@@ -8,13 +8,15 @@ import { ProductsPageRoutingModule } from './products-routing.module';
 
 import { ProductsPage } from './products.page';
 import { ProductsFormComponent } from './products-form/products-form.component';
+import { MaskitoDirective } from '@maskito/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductsPageRoutingModule
+    ProductsPageRoutingModule,
+    MaskitoDirective,
   ],
   declarations: [
     ProductsPage,

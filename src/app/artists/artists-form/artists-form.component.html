@@ -1,3 +1,38 @@
-<p>
-  artists-form works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Artistas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input labelPlacement="floating" label="Nome do Artista:" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="floating" label="Banda:" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="floating" label="URL da Imagem:" type="url"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="floating" label="Link do vídeo (YouTube embed):" type="url"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea labelPlacement="floating" label="Sobre o artista:" auto-grow="true"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

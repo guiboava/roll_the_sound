@@ -8,13 +8,15 @@ import { ArtistsPageRoutingModule } from './artists-routing.module';
 
 import { ArtistsPage } from './artists.page';
 import { ArtistsFormComponent } from './artists-form/artists-form.component';
+import { MaskitoDirective } from '@maskito/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ArtistsPageRoutingModule
+    ArtistsPageRoutingModule,
+    MaskitoDirective,
   ],
   declarations: [ArtistsPage,
     ArtistsFormComponent,

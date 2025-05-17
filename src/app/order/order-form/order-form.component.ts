@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { dateMask, maskitoElement, priceMask } from 'src/app/core/constants/mask.constants';
 
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss'],
-  standalone: false,
+  standalone:false,
 })
 export class OrderFormComponent  implements OnInit {
+
+  dateMask = dateMask;
+  priceMask = priceMask;
+  maskitoElement = maskitoElement;
 
   constructor() { }
 
