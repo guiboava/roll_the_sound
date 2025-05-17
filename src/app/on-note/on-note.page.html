@@ -7,42 +7,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Na Nota</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-card>
-  <ion-card-header>
-    <!-- Cadastro de banda  -->
-    <ion-card-title color="primary">Tom Petty And The Heartbreakers</ion-card-title>
-    <!-- Cadastro do instrumento demonstrado  -->
-    <ion-card-subtitle>Instrumento: Gaita C(DÓ)</ion-card-subtitle>
-  </ion-card-header>
-  <ion-card-content>
-    <!-- Cadastro de video que usa a musica  -->
-  <iframe 
-    width="560" 
-    height="315"   
-    src="https://www.youtube.com/embed/aowSGxim_O8" 
-    title="YouTube video player" 
-    style="border: 2px solid #b00020; border-radius: 10px;"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
 
-  <!-- Cadastro da tablatura  -->
-  <ion-title >Tablatura:</ion-title>
-  <ion-item >
-    <ion-text>
-          -4 -4 -5 -5 5 -4<br> 
-          -4 -4 -5 -5 5 -4 <br>
-          -4 -4 -5 -5 5 -4 <br>
-    </ion-text>
-  </ion-item>
-  </ion-card-content>
-</ion-card>
+<ion-content>
+  <div class="tuner-container">
+<h2 class="note-display">{{ note }}</h2>
+<p class="frequency">{{ frequency }} Hz</p>
+<ion-icon style="Color:rgb(255, 0, 0)" name="arrow-down-outline"></ion-icon>
+<div class="meter">
+  <div class="meter-bar" [style.width.%]="meterPosition * 100"></div>
+</div>
 
+<ion-button (click)="startTuning()">Iniciar Afinador</ion-button>
+<ion-button (click)="stopTuning()">Parar</ion-button>
+
+  </div>
+
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center">© 2025 Roll the Sound</ion-title>
+  </ion-toolbar>
 </ion-content>
-

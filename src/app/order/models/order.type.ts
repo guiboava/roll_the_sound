@@ -4,6 +4,6 @@ export type Order = {
   clientName: string,
   clientCpf: string,
   orderDate: Date,
-  totalPrice: number,
+  status: string,
   itemsList: OrderItem[],
 }

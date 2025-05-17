@@ -14,13 +14,13 @@ export class OrderPage implements OnInit {
       clientName: "Guilherme da Silva boava",
       clientCpf: "114.53873902",
       orderDate: new Date(2025, 5, 14),
-      totalPrice: 5630,
+      status: 'CANCELADO',
       itemsList: [
         {
           image: "https://akusticamusical.fbitsstatic.net/img/p/guitarra-ibanez-grg131dx-bkf-rg-gio-series-superstrato-black-flat-c-escala-escura-e-escudo-vermelho-308844/521321.jpg?w=900&h=900&v=202502260622&qs=ignore",
           name: "Guitarra GRG132DX",
           price: 2650,
-          quantity: 2,
+          quantity: 1,
         },
         {
           image: "https://acdn-us.mitiendanube.com/stores/283/003/products/free-blues-1-nv1-024ec3140c64efb6d616672368061234-1024-1024.jpg",
@@ -30,13 +30,14 @@ export class OrderPage implements OnInit {
         },
         
       ],
+
     },
     
     {
       clientName: "Pedro dos Santos",
       clientCpf: "114.53873902",
       orderDate: new Date(2025, 5, 14),
-      totalPrice: 5630,
+      status: 'PENDENTE',
       itemsList: [
         {
           image: "https://akusticamusical.fbitsstatic.net/img/p/guitarra-ibanez-grg131dx-bkf-rg-gio-series-superstrato-black-flat-c-escala-escura-e-escudo-vermelho-308844/521321.jpg?w=900&h=900&v=202502260622&qs=ignore",
@@ -48,17 +49,18 @@ export class OrderPage implements OnInit {
           image: "https://acdn-us.mitiendanube.com/stores/283/003/products/free-blues-1-nv1-024ec3140c64efb6d616672368061234-1024-1024.jpg",
           name: "Gaita C(DÓ)",
           price: 165,
-          quantity: 2,
+          quantity: 9,
         },
         
       ],
+
     },
     
     {
       clientName: "Ronaldo Antunes",
       clientCpf: "114.53873902",
       orderDate: new Date(2025, 5, 14),
-      totalPrice: 5630,
+      status: 'PAGO',
       itemsList: [
         {
           image: "https://akusticamusical.fbitsstatic.net/img/p/guitarra-ibanez-grg131dx-bkf-rg-gio-series-superstrato-black-flat-c-escala-escura-e-escudo-vermelho-308844/521321.jpg?w=900&h=900&v=202502260622&qs=ignore",
@@ -70,13 +72,17 @@ export class OrderPage implements OnInit {
           image: "https://acdn-us.mitiendanube.com/stores/283/003/products/free-blues-1-nv1-024ec3140c64efb6d616672368061234-1024-1024.jpg",
           name: "Gaita C(DÓ)",
           price: 165,
-          quantity: 2,
+          quantity: 5,
         },
         
-      ],
+        ],
     },
-    
+
   ]
+getOrderTotal(order: Order): number {
+return order.itemsList.reduce((sum, item) => sum + item.price * item.quantity, 0)
+}
+
   constructor() { }
 
   ngOnInit() {

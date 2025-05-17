@@ -15,15 +15,38 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item >
-    <ion-text>
-        4. Opinião dos Clientes /opinion<br>
-        Nome (ion-input)<br>
-        Nota (ion-select com notas 1 a 5)<br>
-        Comentário (ion-textarea)<br>
-        Produto avaliado (ion-select)<br>
-        Deseja ser contatado? (ion-toggle)<br>
-    </ion-text>
-  </ion-item>
 
+
+  <ion-list>
+    @for(opinion of opinionList; track opinion.name) {
+    <ion-item>
+      <ion-text>
+
+        <h2><strong>Nota: </strong></h2>
+        @for(i of getArray(opinion.note); track i){
+        <ion-icon style="color: yellow;" name="star-outline"></ion-icon>
+        }
+        <h4><strong>Cidade: </strong>{{opinion.city}}</h4>
+
+        <h4><strong>Recomenda: </strong> {{opinion.recommend ? 'Sim':'Não'}}</h4>
+
+        <h3><strong>Opinião: </strong> {{ opinion.comment }} </h3>
+      </ion-text>
+    </ion-item>
+    } @empty {
+    <ion-item>Lista de jogos vazia, cadastre um novo jogo!</ion-item>
+    }
+  </ion-list>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['new']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center">© 2025 Roll the Sound</ion-title>
+  </ion-toolbar>
 </ion-content>

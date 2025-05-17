@@ -16,40 +16,33 @@
   </ion-header>
 
   <ion-list>
-    <ion-list-header lines="full">
-      <ion-label color="primary"><strong>Lista de Artistas</strong></ion-label>
-    </ion-list-header>
+
 
     @for (artist of artistsList; track artist.name) {
 
-    <ion-card class="artist-card">
+  <ion-card class="artist-card">
+  <ion-card-header>
+    <ion-card-title class="artist-name">{{ artist.name }}</ion-card-title>
+    <ion-card-subtitle class="band-name">Banda: {{ artist.band }}</ion-card-subtitle>
+  </ion-card-header>
 
-<ion-item>
-      <ion-card-header>
-        <ion-card-title>{{ artist.name }}</ion-card-title>
-        <ion-card-subtitle>Banda: {{ artist.band }}</ion-card-subtitle>
-      </ion-card-header>
-</ion-item>
-      <ion-card-content>
-        <ion-item>
-          <ion-thumbnail style="width:50rem; height:50rem;" slot="start">
-            <ion-img class="artist-img" [src]="artist.image" alt="Foto do artista"></ion-img>
-          </ion-thumbnail>
-          <div class="video-container">
-            <iframe [src]="artist.srcClip" title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
+  <div class="artist-content">
+    <ion-img class="artist-img" [src]="artist.image" alt="Foto do artista"></ion-img>
 
+    <div class="video-container">
+      <iframe [src]="artist.srcClip" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
 
-        </ion-item>
-                  <h1><strong>Sobre:</strong>
-            <p> {{ artist.about }}</p>
-          </h1>
-      </ion-card-content>
+  <ion-card-content class="about-text">
+    <ion-title><strong>Sobre:</strong></ion-title>
+    <h1><p>{{ artist.about }}</p></h1>
+  </ion-card-content>
+</ion-card>
 
-    </ion-card>
     }
 
     @empty {
@@ -64,5 +57,11 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
+
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center">© 2025 Roll the Sound</ion-title>
+  </ion-toolbar>
 
 </ion-content>

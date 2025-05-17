@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OpinionPageRoutingModule } from './opinion-routing.module';
 
 import { OpinionPage } from './opinion.page';
+import { OpinionFormComponent } from './opinion-form/opinion-form.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { OpinionPage } from './opinion.page';
     IonicModule,
     OpinionPageRoutingModule
   ],
-  declarations: [OpinionPage]
+  declarations: [
+    OpinionPage,
+    OpinionFormComponent,
+  ]
 })
 export class OpinionPageModule {}
