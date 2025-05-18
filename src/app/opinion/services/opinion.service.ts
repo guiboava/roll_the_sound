@@ -26,7 +26,12 @@ export class OpinionService {
   ];
 
   constructor() { }
-    getList() {
+  
+  getById(opinionId: number) {
+    return this.opinionList.find(o => o.id === opinionId);
+  }
+  
+  getList() {
     return [...this.opinionList];
   }
 

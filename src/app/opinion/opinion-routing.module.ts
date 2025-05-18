@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: OpinionFormComponent,
+  },
+  {
+    path: 'edit/:gameId',
+    component: OpinionFormComponent,
   }
 ];
 

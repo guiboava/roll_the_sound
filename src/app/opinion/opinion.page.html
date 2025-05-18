@@ -32,7 +32,8 @@
         <h4><strong>Recomenda: </strong> {{opinion.recommend ? 'Sim':'Não'}}</h4>
 
         <h3><strong>Opinião: </strong> {{ opinion.comment }} </h3>
-                <ion-button size="small">
+        
+         <ion-button size="small" [routerLink]="['edit', opinion.id]">
           <ion-icon name="create" slot="start"></ion-icon>
           Editar
         </ion-button>

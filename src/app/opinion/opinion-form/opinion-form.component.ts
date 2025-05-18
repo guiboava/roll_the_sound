@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { dateMask, maskitoElement, priceMask } from 'src/app/core/constants/mask.constants';
 import { OpinionService } from '../services/opinion.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-opinion-form',
@@ -48,8 +48,16 @@ export class OpinionFormComponent implements OnInit {
 
    constructor(
     private opinionService: OpinionService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) { 
+    const opinionId = parseInt(this.activatedRoute.snapshot.params['opinionId']);
+    const opinion = this.opinionService.getById(opinionId);
+    if (opinion) {
+      this.opinionForm.patchValue(opinion);
+    }
+
+  }
 
   ngOnInit() {
   }
