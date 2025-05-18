@@ -23,6 +23,7 @@ export class ProductsFormComponent implements OnInit {
     stock: new FormControl(true, [Validators.required]),
     image: new FormControl('', [Validators.required, ApplicationValidators.urlValidator]),
   });
+  productId!: number;
 
   constructor(
     private productsService: ProductsService,
@@ -31,16 +32,19 @@ export class ProductsFormComponent implements OnInit {
   ) {
 
     const productId = parseInt(this.activatedRoute.snapshot.params['productId']);
-    const product = this.productsService.getById(productId);
-    
-    if (product) {
-      this.productsForm.patchValue(product);
+
+    if (productId) {
+      const product = this.productsService.getById(productId);
+      if (product) {
+        this.productId = productId;
+        this.productsForm.patchValue(product);
+      }
+
     }
-    
-   }
+  }
 
 
-  
+
 
   ngOnInit() {
   }
@@ -52,8 +56,10 @@ export class ProductsFormComponent implements OnInit {
 
   save() {
     let { value } = this.productsForm;
-    console.log(value);
-    this.productsService.add(value);
+    this.productsService.save({
+      ...value,
+      id: this.productId
+    });
     this.router.navigate(['/products'])
   }
 }

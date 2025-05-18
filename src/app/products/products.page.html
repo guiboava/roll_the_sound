@@ -20,7 +20,7 @@
           <img src="https://placehold.co/400" />
           }
           <ion-text>
-            <h2 style="color: #b00020;"><strong>{{ product.name }}</strong></h2>
+            <h2 style="color: #b00020;"><strong>{{product.id}} - {{ product.name }}</strong></h2>
             <h3><strong>Fabricante: </strong> {{ product.manufacturer }} </h3>
             <h4><strong>Preço: </strong> {{product.price | currency: 'BRL' }}</h4>
             <h4 style="margin: 0;"><strong>Disponível:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>

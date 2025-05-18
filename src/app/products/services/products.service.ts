@@ -35,9 +35,36 @@ constructor() { }
     return [...this.productList];
   }
 
-  add(product: Product) {
-    this.productList = [...this.productList, product];  
+
+
+private add(product: Product) {
+    this.productList = [...this.productList, {
+      ...product,
+      id: this.getNextId()
+    }];
   }
+
+  private getNextId(): number {
+    const maxId = this.productList.reduce((id, product) => {
+      if (!!product.id && product?.id > id) {
+        id = product.id;
+      }
+      return id;
+    }, 0);
+    return maxId + 1;
+  }
+
+  private update(updatedProduct: Product) {
+    this.productList = this.productList.map(p => {
+      return (p.id === updatedProduct.id) ? updatedProduct : p;
+    });
+  }
+
+  save(product: Product) {
+    product.id ? this.update(product) : this.add(product);
+  }
+
+
  remove(product: Product) {
     this.productList = this.productList.filter(g => g.id !== product.id);
   }

@@ -36,9 +36,36 @@ export class ArtistsService {
     return [...this.artistsList];
   }
 
-  add(artist: Artist) {
-    this.artistsList = [...this.artistsList, artist];
+
+
+  private add(artist: Artist) {
+    this.artistsList = [...this.artistsList, {
+      ...artist,
+      id: this.getNextId()
+    }];
   }
+
+  private getNextId(): number {
+    const maxId = this.artistsList.reduce((id, artist) => {
+      if (!!artist.id && artist?.id > id) {
+        id = artist.id;
+      }
+      return id;
+    }, 0);
+    return maxId + 1;
+  }
+
+  private update(updatedArtist: Artist) {
+    this.artistsList = this.artistsList.map(a => {
+      return (a.id === updatedArtist.id) ? updatedArtist : a;
+    });
+  }
+
+  save(artist: Artist) {
+    artist.id ? this.update(artist) : this.add(artist);
+  }
+
+
 
   remove(artist: Artist) {
     this.artistsList = this.artistsList.filter(g => g.id !== artist.id);

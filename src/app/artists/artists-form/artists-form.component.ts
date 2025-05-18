@@ -26,6 +26,8 @@ export class ArtistsFormComponent implements OnInit {
     about: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(3000)]),
   });
 
+  artistId!: number;
+
   constructor(
     private artistService: ArtistsService,
     private sanitizer: DomSanitizer,
@@ -34,11 +36,13 @@ export class ArtistsFormComponent implements OnInit {
   ) {
 
     const artistId = parseInt(this.activatedRoute.snapshot.params['artistId']);
-    const artist = this.artistService.getById(artistId);
-    if (artist) {
-      this.artistForm.patchValue(artist);
+        if (artistId) {
+      const artist = this.artistService.getById(artistId);
+      if (artist) {
+        this.artistId = artistId;
+        this.artistForm.patchValue(artist);
+      }
     }
-  
   }
 
   ngOnInit() {
@@ -53,8 +57,10 @@ export class ArtistsFormComponent implements OnInit {
 
   save() {
     let { value } = this.artistForm;
-    console.log(value);
-    this.artistService.add(value);
+    this.artistService.save({
+      ...value,
+      id: this.artistId
+    });
     this.router.navigate(['/artists'])
   }
 
