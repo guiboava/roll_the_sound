@@ -6,38 +6,52 @@
     <ion-title><strong>Produtos</strong></ion-title>
   </ion-toolbar>
 </ion-header>
-  <ion-content>
+<ion-content>
 
 
-  <ion-grid >
-    <ion-row >
+  <ion-grid>
+    <ion-row>
       @for(product of productList; track product.name) {
-        <ion-col size="6" size-md="3" >
-          <ion-card class=".card-produto" >
-            <img class="img-produto" [src]="product.image" />
-            <ion-text >
-              <h2 style="color: #b00020;"><strong>{{ product.name }}</strong></h2>
-              <h3><strong>Fabricante: </strong> {{ product.manufacturer }} </h3>
-              <h4><strong>Preço: </strong> {{product.price | currency: 'BRL' }}</h4>
-              <h4><strong>Disponivel:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>
-            </ion-text>
-          </ion-card>
-        </ion-col>
+      <ion-col size="6" size-md="3">
+        <ion-card class=".card-produto">
+          @if(product.image) {
+          <img class="img-produto" [src]="product.image" />
+          } @else {
+          <img src="https://placehold.co/400" />
+          }
+          <ion-text>
+            <h2 style="color: #b00020;"><strong>{{ product.name }}</strong></h2>
+            <h3><strong>Fabricante: </strong> {{ product.manufacturer }} </h3>
+            <h4><strong>Preço: </strong> {{product.price | currency: 'BRL' }}</h4>
+            <h4 style="margin: 0;"><strong>Disponível:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>
+          </ion-text>
+
+          <ion-button size="small">
+            <ion-icon name="create" slot="start"></ion-icon>
+            Editar
+          </ion-button>
+          <ion-button size="small" (click)="remove(product)">
+            <ion-icon name="trash" slot="end"></ion-icon>
+            Excluir
+          </ion-button>
+
+        </ion-card>
+      </ion-col>
       }
       @empty {
       <ion-item>Lista de produtos vazia, cadastre um novo produto!</ion-item>
       }
     </ion-row>
   </ion-grid>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button [routerLink]="['new']">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['new']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-    
+
   <ion-toolbar>
     <ion-title size="small" class="ion-text-center">© 2025 Roll the Sound</ion-title>
   </ion-toolbar>
 
-  </ion-content>
+</ion-content>

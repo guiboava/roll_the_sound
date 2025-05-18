@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './models/products.type';
 import { ProductsService } from './services/products.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-products',
@@ -12,7 +13,8 @@ export class ProductsPage implements OnInit {
   productList: Product[] = [];
 
   constructor(
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private alertController: AlertController,
   ) {
   }
 
@@ -30,7 +32,23 @@ export class ProductsPage implements OnInit {
     this.productList = this.productsService.getList();
   }
 
-  ngOnInit() {
+ngOnInit() { }
+
+  remove(product: Product) {
+    this.alertController.create({
+      header: 'Exclusão',
+      message: `Confirma a exclusão do produto ${product.name}?`,
+      buttons: [
+        {
+          text: 'Sim',
+          handler: () => {
+            this.productsService.remove(product);
+            this.productList = this.productsService.getList();
+          }
+        },
+        'Não'
+      ]
+    }).then(alert => alert.present());
   }
 
 }

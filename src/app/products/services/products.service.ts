@@ -8,6 +8,7 @@ export class ProductsService {
 
       private productList: Product[] = [
       {
+        id: 1,
         name: "Guitarra GRG132DX",
         price: 2650,
         manufacturer: "Ibanez",
@@ -15,6 +16,7 @@ export class ProductsService {
         image: "https://akusticamusical.fbitsstatic.net/img/p/guitarra-ibanez-grg131dx-bkf-rg-gio-series-superstrato-black-flat-c-escala-escura-e-escudo-vermelho-308844/521321.jpg?w=900&h=900&v=202502260622&qs=ignore",
       },
       {
+        id: 2,
         name: "Gaita C(DÓ)",
         price: 165,
         manufacturer: "Hering",
@@ -30,6 +32,9 @@ constructor() { }
   }
 
   add(product: Product) {
-    this.productList = [...this.productList, product];  }
-
+    this.productList = [...this.productList, product];  
+  }
+ remove(product: Product) {
+    this.productList = this.productList.filter(g => g.id !== product.id);
+  }
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { dateMask, maskitoElement, parseDateMask, priceMask } from 'src/app/core/constants/mask.constants';
 import { ApplicationValidators } from 'src/app/core/constants/url.validator';
 import { ProductsService } from '../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-form',
@@ -24,7 +25,8 @@ export class ProductsFormComponent  implements OnInit {
   });
 
   constructor(
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router
   ) {}
 
 
@@ -40,5 +42,6 @@ export class ProductsFormComponent  implements OnInit {
     let { value } = this.productsForm;
     console.log(value);
     this.productsService.add(value);
+    this.router.navigate(['/products'])
   }
 }

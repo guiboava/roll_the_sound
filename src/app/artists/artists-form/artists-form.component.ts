@@ -4,6 +4,7 @@ import { dateMask, maskitoElement, priceMask } from 'src/app/core/constants/mask
 import { ApplicationValidators } from 'src/app/core/constants/url.validator';
 import { ArtistsService } from '../services/artists.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artists-form',
@@ -25,7 +26,11 @@ srcClip: new FormControl('', [Validators.required, ApplicationValidators.urlVali
     about: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(3000)]),
   });
 
-  constructor( private artistService: ArtistsService,private sanitizer: DomSanitizer) { }
+  constructor( 
+    private artistService: ArtistsService,
+    private sanitizer: DomSanitizer,
+    private router: Router
+  ) { }
 
   ngOnInit() {
    }
@@ -41,6 +46,7 @@ srcClip: new FormControl('', [Validators.required, ApplicationValidators.urlVali
     let { value } = this.artistForm;
     console.log(value);
     this.artistService.add(value);
+    this.router.navigate(['/artists'])
   }
 
   getSafeUrl(url: string | null) {

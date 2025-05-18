@@ -6,7 +6,7 @@ import { Opinion } from '../models/opinion.type';
 })
 export class OpinionService {
 
-    opinionList: Opinion[] = [
+    private opinionList: Opinion[] = [
     {
     name: 'Guilherme da Silva Boava',
     note: 5,
@@ -21,7 +21,13 @@ export class OpinionService {
     recommend: false,
     city: 'Criciuma',
    },
-  ]
+  ];
 
   constructor() { }
+    getList() {
+    return [...this.opinionList];
+  }
+
+  add(opinion: Opinion) {
+    this.opinionList = [...this.opinionList, opinion];  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Artist } from './models/artist.type';
 import { ArtistsService } from './services/artists.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-artists',
@@ -15,7 +16,9 @@ export class ArtistsPage implements OnInit {
 
   constructor(
     private artistsService: ArtistsService,
+    private alertController: AlertController,
     public sanitizer: DomSanitizer,
+    
   ) {
   }
 
@@ -35,8 +38,23 @@ export class ArtistsPage implements OnInit {
       safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(artist.srcClip)
     }));
   }
-  ngOnInit() {
+   ngOnInit() { }
 
+  remove(artist: Artist) {
+    this.alertController.create({
+      header: 'Exclusão',
+      message: `Confirma a exclusão do artista ${artist.name}?`,
+      buttons: [
+        {
+          text: 'Sim',
+          handler: () => {
+            this.artistsService.remove(artist);
+            this.artistsList = this.artistsService.getList();
+          }
+        },
+        'Não'
+      ]
+    }).then(alert => alert.present());
   }
 
   

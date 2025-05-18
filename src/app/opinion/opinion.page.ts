@@ -18,8 +18,20 @@ export class OpinionPage implements OnInit {
 
   constructor(
     private opinionService: OpinionService
-  ) {
-    this.opinionlist = opinionService.opinionList;
+  ) { }
+
+  ionViewDidLeave(): void {
+    console.log('ionViewDidLeave');
+  }
+  ionViewWillLeave(): void {
+    console.log('ionViewWillLeave');
+  }
+  ionViewDidEnter(): void {
+    console.log('ionViewDidEnter');
+  }
+  ionViewWillEnter(): void {
+    console.log('ionViewWillEnter');
+    this.opinionlist = this.opinionService.getList();
   }
   ngOnInit() {
   }

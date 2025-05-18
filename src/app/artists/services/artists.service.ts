@@ -9,6 +9,7 @@ export class ArtistsService {
 
   private artistsList: Artist[] = [
     {
+      id:1,
       name: "Zakk Wylde",
       image: "https://www.estadao.com.br/resizer/v2/ET66NZXAKVMW3P53VF3ONXCK4U.jpg?quality=80&auth=9f3dd7759114a9fb12c57f8fb957b819e286869963c056c7fb843e6a89b4eea7&width=1200",
       band: "Black Label Society",
@@ -16,6 +17,7 @@ export class ArtistsService {
       about: "Zakk Wylde é um guitarrista e vocalista americano, conhecido por seu trabalho com Ozzy Osbourne e por ser o fundador da banda de heavy metal Black Label Society. Seu estilo une peso, técnica e um visual marcante.",
     },
     {
+      id:2,
       name: "Tom Petty",
       image: "https://i.pinimg.com/736x/77/aa/4b/77aa4b9d92249bf7932499f2ed47ac64.jpg",
       band: "Tom Petty and the Heartbreakers",
@@ -34,4 +36,7 @@ export class ArtistsService {
     this.artistsList = [...this.artistsList, artist];
   }
 
+  remove(artist: Artist) {
+    this.artistsList = this.artistsList.filter(g => g.id !== artist.id);
+  }
 }

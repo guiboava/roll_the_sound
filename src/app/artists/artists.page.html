@@ -20,14 +20,18 @@
 
     @for (artist of artistsList; track artist.name) {
 
-    <ion-card class="artist-card">
+    <ion-card style="border: 1px solid #b00020;" class="artist-card">
       <ion-card-header>
         <ion-card-title class="artist-name">{{ artist.name }}</ion-card-title>
         <ion-card-subtitle class="band-name">Banda: {{ artist.band }}</ion-card-subtitle>
       </ion-card-header>
 
       <div class="artist-content">
+        @if(artist.image) {
         <ion-img class="artist-img" [src]="artist.image" alt="Foto do artista"></ion-img>
+        } @else {
+        <img class="artist-img" src="https://placehold.co/400" alt="Foto do artista" />
+        }
 
         <div class="video-container">
           <iframe [src]="artist.safeUrl" width="560" height="315" frameborder="0" allowfullscreen
@@ -37,11 +41,21 @@
         </div>
       </div>
 
-      <ion-card-content class="about-text">
+
+      <ion-card-content >
         <ion-title><strong>Sobre:</strong></ion-title>
         <h1>
           <p>{{ artist.about }}</p>
         </h1>
+        
+      <ion-button size="small">
+        <ion-icon name="create" slot="start"></ion-icon>
+        Editar
+      </ion-button>
+      <ion-button size="small" (click)="remove(artist)">
+        <ion-icon name="trash" slot="end"></ion-icon>
+        Excluir
+      </ion-button>
       </ion-card-content>
     </ion-card>
 
