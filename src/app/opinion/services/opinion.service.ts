@@ -8,6 +8,7 @@ export class OpinionService {
 
     private opinionList: Opinion[] = [
     {
+    id:1,
     name: 'Guilherme da Silva Boava',
     note: 5,
     comment: 'Comprei uma guitarra na loja de Criciuma, Uma otima guitarra compraria novamente.',
@@ -15,6 +16,7 @@ export class OpinionService {
     city: 'Criciuma',
    },
     {
+    id:2,
     name: 'Guilherme da Silva Boava',
     note: 3,
     comment: 'Comprei uma guitarra na loja de Criciuma, Uma otima guitarra compraria novamente.',
@@ -30,4 +32,8 @@ export class OpinionService {
 
   add(opinion: Opinion) {
     this.opinionList = [...this.opinionList, opinion];  }
+
+ remove(opinion: Opinion) {
+    this.opinionList = this.opinionList.filter(g => g.id !== opinion.id);
+  }
 }

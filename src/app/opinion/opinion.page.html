@@ -23,6 +23,7 @@
       <ion-text>
 
         <h2><strong>Nota: </strong></h2>
+        
         @for(i of getArray(opinion.note); track i){
           <ion-icon name="star" style="  color: gold;  filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black);font-size: 26px;"></ion-icon>
         }
@@ -31,8 +32,21 @@
         <h4><strong>Recomenda: </strong> {{opinion.recommend ? 'Sim':'Não'}}</h4>
 
         <h3><strong>Opinião: </strong> {{ opinion.comment }} </h3>
+                <ion-button size="small">
+          <ion-icon name="create" slot="start"></ion-icon>
+          Editar
+        </ion-button>
+        <ion-button size="small" (click)="remove(opinion)">
+          <ion-icon name="trash" slot="end"></ion-icon>
+          Excluir
+        </ion-button>
       </ion-text>
+
+      
     </ion-item>
+
+
+
     } @empty {
     <ion-item>Lista de opiniões vazia, cadastre uma nova opinião!</ion-item>
     }

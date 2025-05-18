@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { dateMask, maskitoElement, priceMask } from 'src/app/core/constants/mask.constants';
 import { OpinionService } from '../services/opinion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-opinion-form',
@@ -46,7 +47,8 @@ export class OpinionFormComponent implements OnInit {
   }
 
    constructor(
-    private opinionService: OpinionService
+    private opinionService: OpinionService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -61,5 +63,6 @@ export class OpinionFormComponent implements OnInit {
     let { value } = this.opinionForm;
     console.log(value);
     this.opinionService.add(value);
+    this.router.navigate(['/opinion'])
   }
 }

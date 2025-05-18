@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Opinion } from './models/opinion.type';
 import { OpinionService } from './services/opinion.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-opinion',
@@ -17,7 +18,8 @@ export class OpinionPage implements OnInit {
   }
 
   constructor(
-    private opinionService: OpinionService
+    private opinionService: OpinionService,
+    private alertController: AlertController,
   ) { }
 
   ionViewDidLeave(): void {
@@ -33,7 +35,23 @@ export class OpinionPage implements OnInit {
     console.log('ionViewWillEnter');
     this.opinionlist = this.opinionService.getList();
   }
-  ngOnInit() {
+ ngOnInit() { }
+
+  remove(opinion: Opinion) {
+    this.alertController.create({
+      header: 'Exclusão',
+      message: `Confirma a exclusão do jogo ${opinion.name}?`,
+      buttons: [
+        {
+          text: 'Sim',
+          handler: () => {
+            this.opinionService.remove(opinion);
+            this.opinionlist = this.opinionService.getList();
+          }
+        },
+        'Não'
+      ]
+    }).then(alert => alert.present());
   }
 
 }
