@@ -27,6 +27,10 @@ export class ProductsService {
 
 constructor() { }
 
+  getById(productId: number) {
+    return this.productList.find(p => p.id === productId);
+  }
+
   getList() {
     return [...this.productList];
   }

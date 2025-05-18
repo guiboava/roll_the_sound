@@ -28,6 +28,10 @@ export class ArtistsService {
 
   constructor(private sanitizer: DomSanitizer) { }
 
+  getById(artistId: number) {
+    return this.artistsList.find(a => a.id === artistId);
+  }
+
   getList() {
     return [...this.artistsList];
   }

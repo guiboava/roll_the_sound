@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: ArtistsFormComponent
+  },
+  {
+    path: 'edit/:artistsId',
+    component: ArtistsFormComponent,
   }
 ];
 

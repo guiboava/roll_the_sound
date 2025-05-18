@@ -26,7 +26,7 @@
             <h4 style="margin: 0;"><strong>Disponível:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>
           </ion-text>
 
-          <ion-button size="small">
+          <ion-button size="small" [routerLink]="['edit', product.id]">
             <ion-icon name="create" slot="start"></ion-icon>
             Editar
           </ion-button>

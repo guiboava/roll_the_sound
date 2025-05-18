@@ -48,7 +48,7 @@
           <p>{{ artist.about }}</p>
         </h1>
         
-      <ion-button size="small">
+      <ion-button size="small" [routerLink]="['edit', artist.id]">
         <ion-icon name="create" slot="start"></ion-icon>
         Editar
       </ion-button>
