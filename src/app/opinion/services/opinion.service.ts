@@ -35,8 +35,34 @@ export class OpinionService {
     return [...this.opinionList];
   }
 
-  add(opinion: Opinion) {
-    this.opinionList = [...this.opinionList, opinion];  }
+
+  private add(opinion: Opinion) {
+    this.opinionList = [...this.opinionList, {
+      ...opinion,
+      id: this.getNextId()
+    }];
+  }
+
+  private getNextId(): number {
+    const maxId = this.opinionList.reduce((id, opinion) => {
+      if (!!opinion.id && opinion?.id > id) {
+        id = opinion.id;
+      }
+      return id;
+    }, 0);
+    return maxId + 1;
+  }
+
+  private update(updatedOpnion: Opinion) {
+    this.opinionList = this.opinionList.map(o => {
+      return (o.id === updatedOpnion.id) ? updatedOpnion : o;
+    });
+  }
+
+  save(opinion: Opinion) {
+    opinion.id ? this.update(opinion) : this.add(opinion);
+  }
+
 
  remove(opinion: Opinion) {
     this.opinionList = this.opinionList.filter(g => g.id !== opinion.id);

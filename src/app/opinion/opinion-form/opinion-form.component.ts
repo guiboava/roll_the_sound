@@ -42,6 +42,8 @@ export class OpinionFormComponent implements OnInit {
     city: new FormControl('', [Validators.required])
   });
 
+   opinionId!: number;
+
   getStars(n: number): string {
     return '⭐'.repeat(n);
   }
@@ -52,11 +54,13 @@ export class OpinionFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) { 
     const opinionId = parseInt(this.activatedRoute.snapshot.params['opinionId']);
-    const opinion = this.opinionService.getById(opinionId);
-    if (opinion) {
-      this.opinionForm.patchValue(opinion);
+    if (opinionId) {
+      const opinion = this.opinionService.getById(opinionId);
+      if (opinion) {
+        this.opinionId = opinionId;
+        this.opinionForm.patchValue(opinion);
+      }
     }
-
   }
 
   ngOnInit() {
@@ -69,8 +73,11 @@ export class OpinionFormComponent implements OnInit {
 
   save() {
     let { value } = this.opinionForm;
-    console.log(value);
-    this.opinionService.add(value);
+    this.opinionService.save({
+      ...value,
+      id: this.opinionId
+    });
+    
     this.router.navigate(['/opinion'])
   }
 }
