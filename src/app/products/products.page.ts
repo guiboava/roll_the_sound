@@ -9,13 +9,26 @@ import { ProductsService } from './services/products.service';
   standalone: false,
 })
 export class ProductsPage implements OnInit {
-    productList: Product[] = [];
-  
+  productList: Product[] = [];
+
   constructor(
     private productsService: ProductsService
   ) {
-    this.productList = productsService.productList;
-   }
+  }
+
+  ionViewDidLeave(): void {
+    console.log('ionViewDidLeave');
+  }
+  ionViewWillLeave(): void {
+    console.log('ionViewWillLeave');
+  }
+  ionViewDidEnter(): void {
+    console.log('ionViewDidEnter');
+  }
+  ionViewWillEnter(): void {
+    console.log('ionViewWillEnter');
+    this.productList = this.productsService.getList();
+  }
 
   ngOnInit() {
   }

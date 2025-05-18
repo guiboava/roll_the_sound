@@ -6,7 +6,7 @@ import { Product } from '../models/products.type';
 })
 export class ProductsService {
 
-      productList: Product[] = [
+      private productList: Product[] = [
       {
         name: "Guitarra GRG132DX",
         price: 2650,
@@ -23,5 +23,13 @@ export class ProductsService {
       },  
     ]
 
-  constructor() { }
+constructor() { }
+
+  getList() {
+    return [...this.productList];
+  }
+
+  add(product: Product) {
+    this.productList = [...this.productList, product];  }
+
 }
