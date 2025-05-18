@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Opinion } from './models/opinion.type';
+import { OpinionService } from './services/opinion.service';
 
 @Component({
   selector: 'app-opinion',
@@ -9,31 +10,17 @@ import { Opinion } from './models/opinion.type';
 })
 export class OpinionPage implements OnInit {
 
-    opinionList: Opinion[] = [
-    {
-    name: 'Guilherme da Silva Boava',
-    note: 5,
-    comment: 'Comprei uma guitarra na loja de Criciuma, Uma otima guitarra compraria novamente.',
-    recommend: true,
-    city: 'Criciuma',
-   },
-    {
-    name: 'Guilherme da Silva Boava',
-    note: 3,
-    comment: 'Comprei uma guitarra na loja de Criciuma, Uma otima guitarra compraria novamente.',
-    recommend: false,
-    city: 'Criciuma',
-   },
-  ]
-
-
+  opinionlist: Opinion[] = [];
 
   getArray(n: number): number[] {
     return Array.from({ length: n });
   }
 
-  constructor() { }
-
+  constructor(
+    private opinionService: OpinionService
+  ) {
+    this.opinionlist = opinionService.opinionList;
+  }
   ngOnInit() {
   }
 

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { dateMask, maskitoElement, priceMask } from 'src/app/core/constants/mask.constants';
+import { ApplicationValidators } from 'src/app/core/constants/url.validator';
+import { ArtistsService } from '../services/artists.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-artists-form',
@@ -13,22 +17,34 @@ export class ArtistsFormComponent  implements OnInit {
   priceMask = priceMask;
   maskitoElement = maskitoElement;
 
-  convertToEmbedUrl(url: string): string | null {
-  if (!url) return null;
+   artistForm: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+    image: new FormControl('', [Validators.required,ApplicationValidators.urlValidator]),
+    band: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+srcClip: new FormControl('', [Validators.required, ApplicationValidators.urlValidator]),
+    about: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(3000)]),
+  });
 
-  const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/;
-  const match = url.match(youtubeRegex);
+  constructor( private artistService: ArtistsService,private sanitizer: DomSanitizer) { }
 
-  if (match && match[1]) {
-    return `https://www.youtube.com/embed/${match[1]}`;
+  ngOnInit() {
+   }
+
+
+
+  hasError(field: string, error: string) {
+    const formControl = this.artistForm.get(field);
+    return formControl?.touched && formControl?.errors?.[error]
   }
 
+  save() {
+    let { value } = this.artistForm;
+    console.log(value);
+    this.artistService.add(value);
+  }
 
-  return null;
+  getSafeUrl(url: string | null) {
+  return url ? this.sanitizer.bypassSecurityTrustResourceUrl(url) : '';
 }
-
-  constructor() { }
-
-  ngOnInit() {}
-
+  
 }

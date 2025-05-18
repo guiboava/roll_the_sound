@@ -20,28 +20,30 @@
 
     @for (artist of artistsList; track artist.name) {
 
-  <ion-card class="artist-card">
-  <ion-card-header>
-    <ion-card-title class="artist-name">{{ artist.name }}</ion-card-title>
-    <ion-card-subtitle class="band-name">Banda: {{ artist.band }}</ion-card-subtitle>
-  </ion-card-header>
+    <ion-card class="artist-card">
+      <ion-card-header>
+        <ion-card-title class="artist-name">{{ artist.name }}</ion-card-title>
+        <ion-card-subtitle class="band-name">Banda: {{ artist.band }}</ion-card-subtitle>
+      </ion-card-header>
 
-  <div class="artist-content">
-    <ion-img class="artist-img" [src]="artist.image" alt="Foto do artista"></ion-img>
+      <div class="artist-content">
+        <ion-img class="artist-img" [src]="artist.image" alt="Foto do artista"></ion-img>
 
-    <div class="video-container">
-      <iframe [src]="artist.srcClip" title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
+        <div class="video-container">
+          <iframe [src]="artist.safeUrl" width="560" height="315" frameborder="0" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title="YouTube player">
+          </iframe>
+        </div>
+      </div>
 
-  <ion-card-content class="about-text">
-    <ion-title><strong>Sobre:</strong></ion-title>
-    <h1><p>{{ artist.about }}</p></h1>
-  </ion-card-content>
-</ion-card>
+      <ion-card-content class="about-text">
+        <ion-title><strong>Sobre:</strong></ion-title>
+        <h1>
+          <p>{{ artist.about }}</p>
+        </h1>
+      </ion-card-content>
+    </ion-card>
 
     }
 

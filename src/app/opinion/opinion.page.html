@@ -18,15 +18,15 @@
 
 
   <ion-list>
-    @for(opinion of opinionList; track opinion.name) {
+    @for(opinion of opinionlist; track opinion.name) {
     <ion-item>
       <ion-text>
 
         <h2><strong>Nota: </strong></h2>
         @for(i of getArray(opinion.note); track i){
-          <ion-icon style="color: yellow;" name="star-outline"></ion-icon>
+          <ion-icon name="star" style="  color: gold;  filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black);font-size: 26px;"></ion-icon>
         }
-        <h4><strong>Cidade:</strong>{{opinion.city}}</h4>
+        <h4><strong>Cidade: </strong>{{opinion.city}}</h4>
 
         <h4><strong>Recomenda: </strong> {{opinion.recommend ? 'Sim':'Não'}}</h4>
 

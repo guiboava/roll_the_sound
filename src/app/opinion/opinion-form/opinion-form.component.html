@@ -8,42 +8,45 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-input labelPlacement="floating" label="Nome:" type="text"></ion-input>
-    </ion-item>
+  <form [formGroup]="opinionForm">
+    <ion-list>
+      <ion-item>
+        <ion-input formControlName="name"  labelPlacement="floating" label="Nome:" type="text"></ion-input>
+      </ion-item>
 
-<ion-item>
-  <ion-select label="Nota:" label-placement="floating" multiple="false">
-    <ion-select-option *ngFor="let n of note" [value]="n">
-      {{ getStars(n) }}
-    </ion-select-option>
-  </ion-select>
-</ion-item>
+      <ion-item>
+        <ion-select formControlName="note"  label="Nota:" label-placement="floating" multiple="false">
+          <ion-select-option *ngFor="let n of note" [value]="n">
+            {{ getStars(n) }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-select label="Cidade:" label-placement="floating" multiple="false">
-        @for(city of city; track city) {
-        <ion-select-option [value]="city">{{city}}</ion-select-option>
-        }
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-select formControlName="city"  label="Cidade:" label-placement="floating" multiple="false">
+          @for(city of city; track city) {
+          <ion-select-option [value]="city">{{city}}</ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-select label="Recomenda:" label-placement="floating" multiple="false">
+      <ion-item>
+        <ion-select formControlName="recommend"  label="Recomenda:" label-placement="floating" multiple="false">
           <ion-select-option value="false">Não</ion-select-option>
           <ion-select-option value="true">Sim</ion-select-option>
-      </ion-select>
-    </ion-item>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-textarea labelPlacement="floating" label="Comentario:" auto-grow="true"></ion-textarea>
-    </ion-item>
-  </ion-list>
+      <ion-item>
+        <ion-textarea formControlName="comment"  labelPlacement="floating" label="Comentario:" auto-grow="true"></ion-textarea>
+      </ion-item>
+    </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="checkmark"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button [disabled]="opinionForm.invalid">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+
 </ion-content>
