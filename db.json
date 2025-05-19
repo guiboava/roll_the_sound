@@ -48,5 +48,23 @@
       "image": "https://akusticamusical.fbitsstatic.net/img/p/guitarra-tagima-tg-530-sf-c-mg-tw-series-stratocaster-surf-green-escala-clara-1129938/1350585.jpg?w=900&h=900&v=202502262158&qs=ignore",
       "id": "7"
     }
+  ],
+  "artists": [
+    {
+      "name": "Zakk Wylde",
+      "image": "https://www.estadao.com.br/resizer/v2/ET66NZXAKVMW3P53VF3ONXCK4U.jpg?quality=80&auth=9f3dd7759114a9fb12c57f8fb957b819e286869963c056c7fb843e6a89b4eea7&width=1200",
+      "band": "Black Label Society",
+      "srcClip": "https://www.youtube.com/embed/KrCMWS_fB4o",
+      "about": "Zakk Wylde (nome de batismo: Jeffrey Phillip Wielandt) é um guitarrista, cantor, compositor e produtor norte-americano, nascido em 14 de janeiro de 1967. Ele é mais conhecido por ser o guitarrista de longa data de Ozzy Osbourne e o fundador da banda Black Label Society.\n\n* Estilo e Características\nZakk Wylde é facilmente reconhecido por:\n\nTimbre poderoso, carregado de distorção e sustain;\n\nUso frequente de harmônicos artificiais (os famosos \"pinch harmonics\");\n\nTécnica de palhetada agressiva;\n\nVisual marcante, com cabelos longos, barba espessa e roupas em estilo biker;\n\nGuitarras Gibson Les Paul personalizadas, especialmente a icônica com o padrão “bullseye” (olho de boi).\n\n\n* Carreira com Ozzy Osbourne\n\nZakk foi descoberto por Ozzy em 1987, substituindo Jake E. Lee. Ele gravou álbuns marcantes como:\n\nNo Rest for the Wicked (1988)\n\nNo More Tears (1991)\n\nOzzmosis (1995)\n\nSeu solo em “No More Tears” é considerado um dos melhores da história do heavy metal.\n\n* Black Label Society\nEm 1998, fundou a Black Label Society (BLS), onde ele é o vocalista, guitarrista e líder criativo. A banda mistura southern metal, doom e hard rock, com letras sobre guerra, espiritualidade e luto.\n\n* Outras curiosidades\nZakk também tocou piano em vários álbuns — sim, ele é multi-instrumentista.\n\nÉ amigo pessoal de Dimebag Darrell (Pantera), e homenageou o amigo após sua morte com a música “In This River”.\n\nJá teve seu próprio projeto acústico: Book of Shadows.\n\n* Legado\nZakk Wylde é um dos guitarristas mais influentes do heavy metal moderno. Sua presença de palco, técnica e dedicação à música o tornaram uma inspiração para músicos no mundo todo.\n\n",
+      "id": "1"
+    },
+    {
+      "name": "Tom Petty",
+      "image": "https://i.pinimg.com/736x/77/aa/4b/77aa4b9d92249bf7932499f2ed47ac64.jpg",
+      "band": "Tom Petty and the Heartbreakers",
+      "srcClip": "https://www.youtube.com/embed/aowSGxim_O8",
+      "about": "Tom Petty foi um cantor, compositor, multi-instrumentista e produtor norte-americano, nascido em 20 de outubro de 1950, em Gainesville, Flórida, e falecido em 2 de outubro de 2017. Ele é amplamente reconhecido como um dos maiores nomes do rock americano, com uma carreira marcada por sucessos atemporais e uma forte identidade musical.\n\nEstilo e Características\nTom Petty era conhecido por um estilo musical direto e acessível, que misturava rock clássico, folk e heartland rock. Algumas características marcantes:\n\nLetras simples e universais, muitas vezes sobre liberdade, juventude e rebeldia;\n\nInfluência de Bob Dylan, The Byrds e do rock dos anos 60;\n\nRefrões memoráveis e melodias cativantes;\n\nVoz inconfundível, com um timbre nasal característico.\n\nTom Petty and the Heartbreakers\nEm 1976, formou a banda Tom Petty and the Heartbreakers, com quem lançou diversos álbuns aclamados, incluindo:\n\nDamn the Torpedoes (1979), com hits como \"Refugee\" e \"Don't Do Me Like That\";\n\nHard Promises (1981), com \"The Waiting\";\n\nInto the Great Wide Open (1991), com a faixa-título e \"Learning to Fly\".\n\nA banda se destacou pela consistência e por apresentações ao vivo cheias de energia.\n\nCarreira Solo e Outras Colaborações\nAlém de seu trabalho com os Heartbreakers, Tom Petty lançou álbuns solo notáveis, como:\n\nFull Moon Fever (1989), que inclui \"Free Fallin'\", \"I Won’t Back Down\" e \"Runnin’ Down a Dream\".\n\nEle também foi membro do supergrupo Traveling Wilburys, ao lado de Bob Dylan, George Harrison, Jeff Lynne e Roy Orbison.\n\nLegado\nTom Petty deixou uma marca duradoura na música americana. Suas canções são frequentemente associadas à ideia de liberdade e espírito jovem. Com mais de 80 milhões de discos vendidos, é um dos artistas mais bem-sucedidos da história do rock. Sua influência pode ser ouvida em diversas gerações de músicos, do rock alternativo ao country moderno.",
+      "id": "2"
+    }
   ]
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Artist } from './models/artist.type';
 import { ArtistsService } from './services/artists.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-artists',
@@ -18,7 +18,7 @@ export class ArtistsPage implements OnInit {
     private artistsService: ArtistsService,
     private alertController: AlertController,
     public sanitizer: DomSanitizer,
-    
+    private toastController: ToastController,
   ) {
   }
 
@@ -33,12 +33,18 @@ export class ArtistsPage implements OnInit {
   }
   ionViewWillEnter(): void {
     console.log('ionViewWillEnter');
-    this.artistsList = this.artistsService.getList().map(artist => ({
-      ...artist,
-      safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(artist.srcClip)
-    }));
+
+    this.artistsService.getList().subscribe({
+      next: (response) => {
+        this.artistsList = response;
+      },
+      error: (error) => {
+        alert('Erro ao carregar lista de Artistas');
+        console.error(error);
+      }
+    });
   }
-   ngOnInit() { }
+  ngOnInit() { }
 
   remove(artist: Artist) {
     this.alertController.create({
@@ -48,8 +54,21 @@ export class ArtistsPage implements OnInit {
         {
           text: 'Sim',
           handler: () => {
-            this.artistsService.remove(artist);
-            this.artistsList = this.artistsService.getList();
+            this.artistsService.remove(artist).subscribe({
+              next: (response) => {
+                this.artistsList = this.artistsList.filter(a => a.id !== response.id);
+                this.toastController.create({
+                  message: `Artista ${artist.name} excluído com sucesso!`,
+                  duration: 3000,
+                  color: 'primary',
+                  keyboardClose: true,
+                }).then(toast => toast.present());
+              },
+              error: (error) => {
+                alert('Erro ao excluir artista ' + artist.name);
+                console.error(error);
+              }
+            });
           }
         },
         'Não'
@@ -57,6 +76,10 @@ export class ArtistsPage implements OnInit {
     }).then(alert => alert.present());
   }
 
+  getSafeUrl(url: string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url)
+  }
   
+
 
 }

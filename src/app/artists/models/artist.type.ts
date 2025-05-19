@@ -7,5 +7,4 @@ export type Artist = {
     band: string,
     srcClip: string,
     about: string,
-    safeUrl?: SafeResourceUrl;
 }

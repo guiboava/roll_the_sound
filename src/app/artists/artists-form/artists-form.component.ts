@@ -5,6 +5,7 @@ import { ApplicationValidators } from 'src/app/core/constants/url.validator';
 import { ArtistsService } from '../services/artists.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-artists-form',
@@ -33,15 +34,23 @@ export class ArtistsFormComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private toastController: ToastController,
   ) {
 
-    const artistId = parseInt(this.activatedRoute.snapshot.params['artistId']);
-        if (artistId) {
-      const artist = this.artistService.getById(artistId);
-      if (artist) {
-        this.artistId = artistId;
-        this.artistForm.patchValue(artist);
-      }
+    const artistId = this.activatedRoute.snapshot.params['artistsId'];
+    if (artistId) {
+      this.artistService.getById(artistId).subscribe({
+        next: (artists) => {
+          if (artists) {
+            this.artistId = artistId;
+            this.artistForm.patchValue(artists);
+          }
+        },
+        error: (error) => {
+          alert('Erro ao carregar o Artista com id ' + artistId)
+          console.error(error);
+        }
+      });
     }
   }
 
@@ -60,12 +69,18 @@ export class ArtistsFormComponent implements OnInit {
     this.artistService.save({
       ...value,
       id: this.artistId
+ }).subscribe({
+      next: () => {
+        this.toastController.create({
+          message: 'Artista salvo com sucesso!',
+          duration: 3000,
+        }).then(toast => toast.present());
+        this.router.navigate(['/artists']);
+      },
+      error: (error) => {
+        alert('Erro ao salvar o Artista ' + value.title + '!');
+        console.error(error);
+      }
     });
-    this.router.navigate(['/artists'])
   }
-
-  getSafeUrl(url: string | null) {
-    return url ? this.sanitizer.bypassSecurityTrustResourceUrl(url) : '';
-  }
-
 }
