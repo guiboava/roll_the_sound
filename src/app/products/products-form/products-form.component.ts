@@ -4,6 +4,7 @@ import { dateMask, maskitoElement, parseDateMask, priceMask } from 'src/app/core
 import { ApplicationValidators } from 'src/app/core/constants/url.validator';
 import { ProductsService } from '../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-products-form',
@@ -29,24 +30,28 @@ export class ProductsFormComponent implements OnInit {
     private productsService: ProductsService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private toastController: ToastController,
   ) {
-
-    const productId = parseInt(this.activatedRoute.snapshot.params['productId']);
+    const productId = this.activatedRoute.snapshot.params['productId'];
 
     if (productId) {
-      const product = this.productsService.getById(productId);
-      if (product) {
-        this.productId = productId;
-        this.productsForm.patchValue(product);
-      }
+      this.productsService.getById(productId).subscribe({
+        next: (product) => {
+          if (product) {
+            this.productId = productId;
+            this.productsForm.patchValue(product);
+          }
+        },
+        error: (error) => {
+          alert('Erro ao carregar o produto com id ' + productId)
+          console.error(error);
+        }
+      });
 
     }
   }
-
-
-
-
   ngOnInit() {
+  
   }
 
   hasError(field: string, error: string) {
@@ -59,7 +64,19 @@ export class ProductsFormComponent implements OnInit {
     this.productsService.save({
       ...value,
       id: this.productId
+         }).subscribe({
+      next: () => {
+        this.toastController.create({
+          message: 'Produto salvo com sucesso!',
+          duration: 3000,
+        }).then(toast => toast.present());
+        this.router.navigate(['/products']);
+      },
+      error: (error) => {
+        alert('Erro ao salvar o Produto ' + value.name + '!');
+        console.error(error);
+      }
     });
-    this.router.navigate(['/products'])
+    
   }
 }

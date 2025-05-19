@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './models/products.type';
 import { ProductsService } from './services/products.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-products',
@@ -15,6 +15,7 @@ export class ProductsPage implements OnInit {
   constructor(
     private productsService: ProductsService,
     private alertController: AlertController,
+    private toastController: ToastController,
   ) {
   }
 
@@ -28,11 +29,18 @@ export class ProductsPage implements OnInit {
     console.log('ionViewDidEnter');
   }
   ionViewWillEnter(): void {
-    console.log('ionViewWillEnter');
-    this.productList = this.productsService.getList();
+    this.productsService.getList().subscribe({
+      next: (response) => {
+        this.productList = response;
+      },
+      error: (error) => {
+        alert('Erro ao carregar lista de produtos');
+        console.error(error);
+      }
+    });
   }
 
-ngOnInit() { }
+  ngOnInit() { }
 
   remove(product: Product) {
     this.alertController.create({
@@ -42,8 +50,21 @@ ngOnInit() { }
         {
           text: 'Sim',
           handler: () => {
-            this.productsService.remove(product);
-            this.productList = this.productsService.getList();
+            this.productsService.remove(product).subscribe({
+              next: (response) => {
+                this.productList = this.productList.filter(p => p.id !== product.id);
+                this.toastController.create({
+                  message: `Produto ${product.name} excluído com sucesso!`,
+                  duration: 3000,
+                  color: 'primary',
+                  keyboardClose: true,
+                }).then(toast => toast.present());
+              },
+              error: (error) => {
+                alert('Erro ao excluir o jogo ' + product.name);
+                console.error(error);
+              }
+            });
           }
         },
         'Não'

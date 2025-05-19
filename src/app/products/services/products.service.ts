@@ -1,71 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/products.type';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-      private productList: Product[] = [
-      {
-        id: 1,
-        name: "Guitarra GRG132DX",
-        price: 2650,
-        manufacturer: "Ibanez",
-        stock: true,
-        image: "https://akusticamusical.fbitsstatic.net/img/p/guitarra-ibanez-grg131dx-bkf-rg-gio-series-superstrato-black-flat-c-escala-escura-e-escudo-vermelho-308844/521321.jpg?w=900&h=900&v=202502260622&qs=ignore",
-      },
-      {
-        id: 2,
-        name: "Gaita C(DÓ)",
-        price: 165,
-        manufacturer: "Hering",
-        stock: true,
-        image: "https://acdn-us.mitiendanube.com/stores/283/003/products/free-blues-1-nv1-024ec3140c64efb6d616672368061234-1024-1024.jpg",
-      },  
-    ]
+  private readonly API_URL = 'http://localhost:3000/products';
 
-constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getById(productId: number) {
-    return this.productList.find(p => p.id === productId);
+  getById(productId: string) {
+    return this.http.get<Product>(`${this.API_URL}/${productId}`);
   }
 
   getList() {
-    return [...this.productList];
+    return this.http.get<Product[]>(this.API_URL)
   }
 
-
-
-private add(product: Product) {
-    this.productList = [...this.productList, {
-      ...product,
-      id: this.getNextId()
-    }];
+  private add(product: Product) {
+    return this.http.post<Product>(this.API_URL, product);
   }
 
-  private getNextId(): number {
-    const maxId = this.productList.reduce((id, product) => {
-      if (!!product.id && product?.id > id) {
-        id = product.id;
-      }
-      return id;
-    }, 0);
-    return maxId + 1;
-  }
-
-  private update(updatedProduct: Product) {
-    this.productList = this.productList.map(p => {
-      return (p.id === updatedProduct.id) ? updatedProduct : p;
-    });
+  private update(product: Product) {
+    return this.http.put<Product>(`${this.API_URL}/${product.id}`, product);
   }
 
   save(product: Product) {
-    product.id ? this.update(product) : this.add(product);
+    return product.id ? this.update(product) : this.add(product);
   }
 
-
- remove(product: Product) {
-    this.productList = this.productList.filter(g => g.id !== product.id);
+  remove(product: Product) {
+    return this.http.delete(`${this.API_URL}/${product.id}`);
   }
 }

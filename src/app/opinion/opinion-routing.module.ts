@@ -14,7 +14,7 @@ const routes: Routes = [
     component: OpinionFormComponent,
   },
   {
-    path: 'edit/:gameId',
+    path: 'edit/:opinionId',
     component: OpinionFormComponent,
   }
 ];

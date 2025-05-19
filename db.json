@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "name": "Guitarra GRG132DX",
+      "price": 2650,
+      "manufacturer": "Ibanez",
+      "stock": true,
+      "image": "https://akusticamusical.fbitsstatic.net/img/p/guitarra-ibanez-grg131dx-bkf-rg-gio-series-superstrato-black-flat-c-escala-escura-e-escudo-vermelho-308844/521321.jpg?w=900&h=900&v=202502260622&qs=ignore",
+      "id": "1"
+    },
+    {
+      "name": "Baixo Elétrico TRBX174",
+      "price": 3200,
+      "manufacturer": "Yamaha",
+      "stock": true,
+      "image": "https://akusticamusical.fbitsstatic.net/img/p/contrabaixo-yamaha-trbx305-car-5-cordas-trbx-series-ativo-vermelho-c-escala-escura-1129789/1350436.jpg?w=900&h=900&v=202502252348&qs=ignore",
+      "id": "2"
+    },
+    {
+      "name": "Teclado PSR-E373",
+      "price": 2800,
+      "manufacturer": "Yamaha",
+      "stock": false,
+      "image": "https://akusticamusical.fbitsstatic.net/img/p/teclado-yamaha-np15b-piaggero-preto-61-teclas-com-fonte-1133213/1353860-1.jpg?w=900&h=900&v=202502260551&qs=ignore",
+      "id": "3"
+    },
+    {
+      "name": "Bateria Acústica DR20 Red Satin",
+      "price": 5800,
+      "manufacturer": "D-One Rocket",
+      "stock": true,
+      "image": "https://akusticamusical.fbitsstatic.net/img/p/bateria-acustica-d-one-rocket-dr20-red-satin-sparkle-bumbo-20-polegadas-1132900/1353547.jpg?w=900&h=900&v=202502260419&qs=ignore",
+      "id": "4"
+    },
+    {
+      "name": "Microfone SM58",
+      "price": 950,
+      "manufacturer": "Shure",
+      "stock": true,
+      "image": "https://akusticamusical.fbitsstatic.net/img/p/microfone-shure-sm58-lc-82355/269850.jpg?w=900&h=900&v=202502260119&qs=ignore",
+      "id": "5"
+    },
+    {
+      "name": "Guitarra TG-530 Stratocaster",
+      "price": 1500,
+      "manufacturer": "Tagima",
+      "stock": true,
+      "image": "https://akusticamusical.fbitsstatic.net/img/p/guitarra-tagima-tg-530-sf-c-mg-tw-series-stratocaster-surf-green-escala-clara-1129938/1350585.jpg?w=900&h=900&v=202502262158&qs=ignore",
+      "id": "7"
+    }
+  ]
+}
