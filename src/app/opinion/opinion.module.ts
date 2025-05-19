@@ -9,6 +9,9 @@ import { OpinionPageRoutingModule } from './opinion-routing.module';
 import { OpinionPage } from './opinion.page';
 import { OpinionFormComponent } from './opinion-form/opinion-form.component';
 import { MaskitoDirective } from '@maskito/angular';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   imports: [
@@ -18,6 +21,7 @@ import { MaskitoDirective } from '@maskito/angular';
     OpinionPageRoutingModule,
     MaskitoDirective,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   declarations: [
     OpinionPage,

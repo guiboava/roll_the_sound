@@ -53,7 +53,7 @@ export class OpinionFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
   ) { 
-    const opinionId = parseInt(this.activatedRoute.snapshot.params['opinionId']);
+    const opinionId = this.activatedRoute.snapshot.params['opinionId'];
     if (opinionId) {
       const opinion = this.opinionService.getById(opinionId);
       if (opinion) {

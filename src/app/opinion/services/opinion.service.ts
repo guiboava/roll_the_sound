@@ -1,70 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Opinion } from '../models/opinion.type';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OpinionService {
-
-    private opinionList: Opinion[] = [
-    {
-    id:1,
-    name: 'Guilherme da Silva Boava',
-    note: 5,
-    comment: 'Comprei uma guitarra na loja de Criciuma, Uma otima guitarra compraria novamente.',
-    recommend: true,
-    city: 'Criciuma',
-   },
-    {
-    id:2,
-    name: 'Guilherme da Silva Boava',
-    note: 3,
-    comment: 'Comprei uma guitarra na loja de Criciuma, Uma otima guitarra compraria novamente.',
-    recommend: false,
-    city: 'Criciuma',
-   },
-  ];
-
-  constructor() { }
   
-  getById(opinionId: number) {
-    return this.opinionList.find(o => o.id === opinionId);
+private readonly API_URL = 'http://localhost:3000/opinions';
+ constructor(private http: HttpClient) { }
+
+  getById(opinionId: string) {
+    return this.http.get<Opinion>(`${this.API_URL}/${opinionId}`);
   }
-  
+
   getList() {
-    return [...this.opinionList];
+    return this.http.get<Opinion[]>(this.API_URL)
   }
-
 
   private add(opinion: Opinion) {
-    this.opinionList = [...this.opinionList, {
-      ...opinion,
-      id: this.getNextId()
-    }];
+    return this.http.post<Opinion>(this.API_URL, opinion);
   }
 
-  private getNextId(): number {
-    const maxId = this.opinionList.reduce((id, opinion) => {
-      if (!!opinion.id && opinion?.id > id) {
-        id = opinion.id;
-      }
-      return id;
-    }, 0);
-    return maxId + 1;
-  }
-
-  private update(updatedOpnion: Opinion) {
-    this.opinionList = this.opinionList.map(o => {
-      return (o.id === updatedOpnion.id) ? updatedOpnion : o;
-    });
+  private update(opinion: Opinion) {
+    return this.http.put<Opinion>(`${this.API_URL}/${opinion.id}`, opinion);
   }
 
   save(opinion: Opinion) {
-    opinion.id ? this.update(opinion) : this.add(opinion);
+    return opinion.id ? this.update(opinion) : this.add(opinion);
   }
 
-
- remove(opinion: Opinion) {
-    this.opinionList = this.opinionList.filter(g => g.id !== opinion.id);
+  remove(opinion: Opinion) {
+    return this.http.delete<Opinion>(this.API_URL + opinion.id)
   }
 }
