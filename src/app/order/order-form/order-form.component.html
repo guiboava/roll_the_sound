@@ -8,27 +8,69 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <!-- Dados do cliente -->
-    <ion-item>
-      <ion-input labelPlacement="floating" label="Nome do Cliente:" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input labelPlacement="floating" label="CPF:" maxlength="14" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input labelPlacement="floating" label="Data da Compra:" [maskito]="dateMask" [maskitoElement]="maskitoElement" />
-    </ion-item>
-    <ion-item>
-      <ion-select label="Status" label-placement="floating" interface="popover" placeholder="Selecione o status">
-        <ion-select-option value="PAGO">Pago</ion-select-option>
-        <ion-select-option value="PENDENTE">Pendente</ion-select-option>
-        <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="orderForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-input formControlName="clientName" labelPlacement="floating" label="Nome do Cliente:" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="clientCpf" labelPlacement="floating" label="CPF:" maxlength="14" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="orderDate" labelPlacement="floating" label="Data da Compra:" [maskito]="dateMask" [maskitoElement]="maskitoElement"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select formControlName="status" label="Status" label-placement="floating" interface="popover" placeholder="Selecione o status">
+          <ion-select-option value="PAGO">Pago</ion-select-option>
+          <ion-select-option value="PENDENTE">Pendente</ion-select-option>
+          <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-title>
+        <strong><h1>Catálogo:</h1></strong>
+      </ion-title>
+
+      <ion-grid>
+        <ion-row>
 
 
+          @for(product of productList; track product.name) {
+
+          <ion-col size="6" size-md="3">
+            <ion-card class=".card-produto">
+              @if(product.image) {
+              <img class="img-produto" [src]="product.image" />
+              } @else {
+              <img src="https://placehold.co/400" />
+              }
+              <ion-text>
+                <h2 style="color: #b00020;"><strong>{{product.id}} - {{ product.name }}</strong></h2>
+                <h3><strong>Fabricante: </strong> {{ product.manufacturer }} </h3>
+                <h4><strong>Preço: </strong> {{product.price | currency: 'BRL' }}</h4>
+                <h4 style="margin: 0;"><strong>Disponível:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>
+              </ion-text>
+
+              <ion-text>
+                <h1>Quantidade:</h1>
+              </ion-text>
+
+            </ion-card>
+          </ion-col>
+          }
+          @empty {
+          <ion-item>Lista de produtos vazia, cadastre um novo produto!</ion-item>
+          }
+
+        </ion-row>
+      </ion-grid>
+
+    </ion-list>
+  </form>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
