@@ -12,19 +12,23 @@
     <ion-list>
 
       <ion-item>
-        <ion-input formControlName="clientName" labelPlacement="floating" label="Nome do Cliente:" type="text"></ion-input>
+        <ion-input formControlName="clientName" labelPlacement="floating" label="Nome do Cliente:"
+          type="text"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input formControlName="clientCpf" labelPlacement="floating" label="CPF:" maxlength="14" type="text"></ion-input>
+        <ion-input formControlName="clientCpf" labelPlacement="floating" label="CPF:" maxlength="14"
+          type="text"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input formControlName="orderDate" labelPlacement="floating" label="Data da Compra:" [maskito]="dateMask" [maskitoElement]="maskitoElement"></ion-input>
+        <ion-input formControlName="orderDate" labelPlacement="floating" label="Data da Compra:" [maskito]="dateMask"
+          [maskitoElement]="maskitoElement"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-select formControlName="status" label="Status" label-placement="floating" interface="popover" placeholder="Selecione o status">
+        <ion-select formControlName="status" label="Status" label-placement="floating" interface="popover"
+          placeholder="Selecione o status">
           <ion-select-option value="PAGO">Pago</ion-select-option>
           <ion-select-option value="PENDENTE">Pendente</ion-select-option>
           <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
@@ -32,7 +36,9 @@
       </ion-item>
 
       <ion-title>
-        <strong><h1>Catálogo:</h1></strong>
+        <strong>
+          <h1>Catálogo:</h1>
+        </strong>
       </ion-title>
 
       <ion-grid>
@@ -55,12 +61,18 @@
                 <h4 style="margin: 0;"><strong>Disponível:</strong> {{ product.stock ? "Sim" : "Não"}} </h4>
               </ion-text>
 
+
               <ion-text>
-                <h1>Quantidade:</h1>
+                <h1>Quantidade: 0</h1>
               </ion-text>
+
+              <ion-button vertical="bottom" horizontal="end" size="big">
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
 
             </ion-card>
           </ion-col>
+          
           }
           @empty {
           <ion-item>Lista de produtos vazia, cadastre um novo produto!</ion-item>
